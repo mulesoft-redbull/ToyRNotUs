@@ -1,0 +1,43 @@
+{
+	"info": {
+		"name": "toysrnotus",
+		"_postman_id": "d5913d4d-978a-4796-aedd-721e2bbcb657",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a652bbf6-7a3c-4e97-b062-ae2f1a2313f8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://www.google.com",
+					"protocol": "http",
+					"host": [
+						"www",
+						"google",
+						"com"
+					]
+				},
+				"description": "test"
+			},
+			"response": []
+		}
+	]
+}
