@@ -8,8 +8,7 @@ node {
         }
         stage ('Build') {
             sh "echo 'Building project'"
-            sh "cd toyrnotus"
-            sh "mvn clean package -s toyrnotus/mvn-settings.xml"
+            sh "toyrnotus/mvn clean package -s mvn-settings.xml"
         }
         stage ('Deploy Dev') {
             sh "echo 'Deploying to DEV'"
