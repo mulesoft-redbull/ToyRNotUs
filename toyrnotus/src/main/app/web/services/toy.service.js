@@ -1,7 +1,7 @@
 
 app.service('toyService', function ($http) {
 
-    var baseUrl = "http://localhost:8081/api";
+    var baseUrl = "/api";
 
     this.getToys = function(age, gender){
         var getToysUrl = baseUrl + "/toys";
