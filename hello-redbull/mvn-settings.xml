@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings
+
+    xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+    <pluginGroups></pluginGroups>
+
+    <proxies>
+
+        <proxy>
+
+            <id>optional</id>
+
+            <active>true</active>
+
+            <protocol>http</protocol>
+
+            <host>dalprx01.na.xom.com</host>
+
+            <port>8080</port>
+
+               <nonProxyHosts>localhost|*.exxonmobil.com|*.xom.com|10.128.12.56</nonProxyHosts> 
+
+        </proxy>
+
+        <proxy>
+
+            <id>optional2</id>
+
+            <active>true</active>
+
+            <protocol>https</protocol>
+
+            <host>dalprx01.na.xom.com</host>
+
+            <port>8080</port>
+
+               <nonProxyHosts>localhost|*.exxonmobil.com|*.xom.com|10.128.12.56</nonProxyHosts> 
+
+        </proxy>
+
+ 
+
+    </proxies>
+
+    <servers>
+
+        <server>
+
+            <id>MuleRepository</id>
+
+            <username>exxonmobil.nexus</username>
+
+            <password>qE3HB3ftE65Qaqyn</password>
+
+        </server>
+
+     <server>
+
+           <id>xom-nexus</id>
+
+           <username>madteam</username>
+
+           <password>19M91ZzVAr09IwXH4c2ekocVn</password>
+
+     </server>
+
+ 
+
+    </servers>
+
+    <mirrors></mirrors>
+
+    <profiles>
+
+        <profile>
+
+            <id>Mule</id>
+
+            <activation>
+
+                <activeByDefault>true</activeByDefault>
+
+            </activation>
+
+            <repositories>
+
+                <repository>
+
+                    <id>MuleRepository</id>
+
+                    <name>MuleRepository</name>
+
+                    <url>https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/</url>
+
+                    <layout>default</layout>
+
+                    <releases>
+
+                        <enabled>true</enabled>
+
+                    </releases>
+
+                    <snapshots>
+
+                        <enabled>true</enabled>
+
+                    </snapshots>
+
+                </repository>
+
+                <repository>
+
+                    <id>mule-nexus-public-releases</id>
+
+                    <name>MuleRepository</name>
+
+                    <url>https://repository.mulesoft.org/nexus/content/groups/public</url>
+
+                    <layout>default</layout>
+
+                    <releases>
+
+                        <enabled>true</enabled>
+
+                    </releases>
+
+                    <snapshots>
+
+                        <enabled>true</enabled>
+
+                    </snapshots>
+
+                </repository>
+
+            </repositories>
+
+        </profile>
+
+    </profiles>
+
+</settings>
