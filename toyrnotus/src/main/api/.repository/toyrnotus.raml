@@ -1,0 +1,76 @@
+#%RAML 1.0
+version: v1
+baseUri: https://mocksvc.mulesoft.com/mocks/321dccdf-8319-4b72-a436-238afc4ea5fe # 
+title: ToyRNotUs
+description: ToyRNotUs api
+
+types: 
+  toy: !include datatype/toy.raml
+  orderCreate: !include datatype/orderCreate.raml
+  order: !include datatype/order.raml
+
+/toys:
+ get:
+  description: return list of Toys base on filtering input
+  queryParameters: 
+    age:
+     enum: [Todler,Baby,3_to_5,6_to_8,over8]
+     required: false
+    gender:
+     enum: [Female,Male,Neatral]
+     required: false
+  responses: 
+    200:
+     body: 
+       application/json:
+         schema: toy[]
+         example: !include example/toy_list.json
+ /{toyId}:
+  get:
+   description: return toy for specific ID
+   responses: 
+     200:
+       body: 
+         application/json:
+           schema: toy
+           example: !include example/toy.json
+     404:
+      body: 
+        application/json:
+          example: {"message":"Product not found."}
+  patch:
+   description: update quantity
+   body: 
+     application/json:
+       example: {"quantity":98}
+   responses: 
+     200:
+      body: 
+        application/json:
+          example: {"message":"Toy updated."}
+/orders:
+ post:
+  description: create order and update quantity
+  body: 
+    application/json:
+      schema: orderCreate
+      example: !include example/orderCreate.json
+  responses: 
+    201:
+      body: 
+        application/json:
+          example: {"message":"Order created" ,"orderId":1234}
+ /{orderId}:
+    get:
+     description: get order by orderId
+     responses: 
+       200:
+         body: 
+           application/json:
+             schema: order
+             example: !include example/order.json
+       404:
+         body: 
+           application/json:
+             example: {"message":"Order not found."}
+    

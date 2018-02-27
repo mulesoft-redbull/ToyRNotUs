@@ -1,0 +1,39 @@
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toy R Not Us</title>
+   <!-- load bootstrap and fontawesome via CDN -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+</head>
+<body ng-controller="ToyRNotUsController">
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Toy R Not Us - powered by Redbull team</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a ng-href="/">Home</a></li>
+          </ul>
+        </div>
+      </nav>
+<div ng-view></div>
+<!-- Bootstrap + JQuery CDN  -->
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<!-- AngularJs CDN  -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+<script src="app.module.js"></script>
+<script src="app.config.js"></script>
+<script src="pages/search/search.controller.js"></script>
+<script src="pages/toys-detail/toys-detail.controller.js"></script>
+<script src="pages/shopping-cart/shopping-cart.controller.js"></script>
+<script src="pages/shipping-detail/shipping-detail.controller.js"></script>
+<script src="pages/order-summary/order-summary.controller.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+  {
+    "toyId":2,
+    "toyName":"43 Piece dinner Set",
+    "gender":"Female",
+    "age":"3_to_5",
+    "price":12.95,
+    "quantity":100,
+    "brand":"CoolKidz"
+  },
+  {
+    "toyId":1,
+    "toyName":"Balance Training Bicycle",
+    "gender":"Neutral",
+    "age":"3_to_5",
+    "price":199.95,
+    "quantity":100,
+    "brand":"SportsFun"
+  }
+]

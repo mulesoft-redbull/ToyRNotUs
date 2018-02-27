@@ -1,0 +1,17 @@
+{
+  "orderLineItems": [ {
+      "toyId": 2,
+      "quantity":2,
+      "unitPrice": 12.95
+    }
+  ],
+  "shippingAddress":{
+    "fullName": "Tanet Gamchaitavonrattana",
+    "address1": "54 North Sathorn",
+    "city": "Bangkok",
+    "province": "Bangkok",
+    "postcode": "10500",
+    "telephone": "+6623527866"
+  },
+  "shippingCost": 50
+}
