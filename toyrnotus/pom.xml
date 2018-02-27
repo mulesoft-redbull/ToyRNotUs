@@ -14,8 +14,8 @@
 
 		<mule.version>3.9.0</mule.version>
     	<mule.tools.version>1.2</mule.tools.version>
-	<munit.version>1.3.7</munit.version>
-    <mule.munit.support.version>3.9.1</mule.munit.support.version>
+		<munit.version>1.3.7</munit.version>
+	    <mule.munit.support.version>3.9.1</mule.munit.support.version>
     </properties>
 
 	<build>
@@ -78,7 +78,31 @@
                     </coverage>
                 </configuration>
             </plugin>
+            <plugin>
+			    <groupId>org.mule.tools.maven</groupId>
+			    <artifactId>mule-maven-plugin</artifactId>
+			    <version>2.2.1</version>
+			    <configuration>
+			    	<deploymentType>arm</deploymentType>
+			        <username>tanetgFeb2018</username>
+			        <password>tanetgFeb2018</password>
+			        <target>HelloDocker</target>
+			        <!-- One of: server, serverGroup, cluster: -->
+			        <targetType>cluster</targetType>
+			        <environment>Development</environment>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <id>deploy</id>
+			            <phase>deploy</phase>
+			            <goals>
+			                <goal>deploy</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
         </plugins>
+        
 	<testResources>
             <testResource>
                 <directory>src/test/munit</directory>
@@ -206,6 +230,18 @@
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
-    </pluginRepositories>
-
+	    <pluginRepository>
+	        <id>mule-public</id>
+	        <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
+	    </pluginRepository>
+	</pluginRepositories>
+	<distributionManagement>
+	    <repository>
+	        <uniqueVersion>false</uniqueVersion>
+	        <id>corp1</id>
+	        <name>Corporate Repository</name>
+	        <url>file:////${user.home}/.m2</url>
+	        <layout>default</layout>
+	    </repository>
+	</distributionManagement>
 </project>
