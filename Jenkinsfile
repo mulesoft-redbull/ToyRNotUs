@@ -29,7 +29,15 @@ node {
         }
         stage ('API-test-dev') {
             sh "echo 'testing api on dev'"
-            sh "newman run toyrnotus/src/test/resources/api-test-scripts/toysrnotus.postman_collection.json --reporters cli,junit"
+            
+            try{
+                sh "newman run toyrnotus/src/test/resources/api-test-scripts/toysrnotus.postman_collection.json --reporters cli,junit"
+                junit "newman/*.xml"
+            }catch(err){
+                currentBuild.result = 'UNSTABLED'
+                junit "newman/*.xml"
+                return
+            }
             
         }
      
