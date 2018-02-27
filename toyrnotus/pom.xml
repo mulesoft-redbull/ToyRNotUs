@@ -89,7 +89,7 @@
 			        <target>HelloDocker</target>
 			        <!-- One of: server, serverGroup, cluster: -->
 			        <targetType>cluster</targetType>
-			        <environment>Development</environment>
+			        <environment>${mule.env}</environment>
 			    </configuration>
 			    <executions>
 			        <execution>
