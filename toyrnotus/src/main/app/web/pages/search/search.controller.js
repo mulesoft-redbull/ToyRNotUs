@@ -1,3 +1,7 @@
-app.controller('search-controller', ['$scope', function ($scope) {
+app.controller('search-controller', function ($scope, toyService) {
+
     $scope.controllerName = 'search-controller';
-}]);
+
+    toyService.sayHello();
+
+});
