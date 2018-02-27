@@ -27,6 +27,8 @@ hs_err_pid*
 
 # Target marven build output
 */target
+*/.mule
+*/.settings
 
 # node
 
