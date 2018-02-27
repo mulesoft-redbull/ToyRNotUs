@@ -8,43 +8,7 @@
 
     <pluginGroups></pluginGroups>
 
-    <proxies>
-
-        <proxy>
-
-            <id>optional</id>
-
-            <active>true</active>
-
-            <protocol>http</protocol>
-
-            <host>dalprx01.na.xom.com</host>
-
-            <port>8080</port>
-
-               <nonProxyHosts>localhost|*.exxonmobil.com|*.xom.com|10.128.12.56</nonProxyHosts> 
-
-        </proxy>
-
-        <proxy>
-
-            <id>optional2</id>
-
-            <active>true</active>
-
-            <protocol>https</protocol>
-
-            <host>dalprx01.na.xom.com</host>
-
-            <port>8080</port>
-
-               <nonProxyHosts>localhost|*.exxonmobil.com|*.xom.com|10.128.12.56</nonProxyHosts> 
-
-        </proxy>
-
- 
-
-    </proxies>
+    
 
     <servers>
 
