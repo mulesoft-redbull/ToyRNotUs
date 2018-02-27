@@ -1,1 +1,28 @@
-{{ controllerName }}
+<div class="container">
+    {{ controllerName }}
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Toy Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Price</th>
+                <th>Brand</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-disabled="!item.availability">
+                    <td>2</td>
+                    <td>43 Piece dinner set</td>
+                    <td>Female</td>
+                    <td>3_to_5</td>
+                    <td>12.95</td>
+                    <td>CoolKidz</td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+</div>
