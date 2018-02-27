@@ -1,9 +1,11 @@
 
 app.service('toyService', function ($http) {
 
-    this.sayHello = function () {
-        console.log('Hello from toy Service');
-        return "Hello, World From service()";
-    };
+    var baseUrl = "http://localhost:8081/api";
+
+    this.getToys = function(age, gender){
+        var getToysUrl = baseUrl + "/toys";
+        return $http.get(getToysUrl);
+    }
 
 });

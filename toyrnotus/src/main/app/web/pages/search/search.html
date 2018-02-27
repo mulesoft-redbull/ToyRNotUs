@@ -3,24 +3,20 @@
         <div class="row">
             <div class="col-5">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Age Range</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="ageSelect">
                     <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option ng-repeat="age in ageList">{{age}}</option>
                 </select>
             </div>
             <div class="col-5">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Gender</label>
-                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <select class="custom-select mr-sm-2" id="genderSelect">
                     <option selected>Choose...</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option ng-repeat="gender in genderList">{{gender}}</option>
                 </select>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-primary btn-search">Search</button>
+                <button type="button" class="btn btn-primary btn-search" id="searchButton" ng-click="searchToys()">Search</button>
             </div>
         </div>
     </form>
@@ -38,29 +34,13 @@
         </thead>
 
         <tbody>
-            <tr ng-disabled="!item.availability">
-                <td>2</td>
-                <td>43 Piece dinner set</td>
-                <td>Female</td>
-                <td>3_to_5</td>
-                <td>12.95</td>
-                <td>CoolKidz</td>
-            </tr>
-            <tr ng-disabled="!item.availability">
-                <td>2</td>
-                <td>43 Piece dinner set</td>
-                <td>Female</td>
-                <td>3_to_5</td>
-                <td>12.95</td>
-                <td>CoolKidz</td>
-            </tr>
-            <tr ng-disabled="!item.availability">
-                <td>2</td>
-                <td>43 Piece dinner set</td>
-                <td>Female</td>
-                <td>3_to_5</td>
-                <td>12.95</td>
-                <td>CoolKidz</td>
+            <tr ng-repeat="toy in toyList">
+                <td>{{toy.toyId}}</td>
+                <td> {{toy.toyName}}</td>
+                <td> {{toy.gender}}</td>
+                <td>{{toy.age}}</td>
+                <td>{{toy.price}}</td>
+                <td>{{toy.brand}}</td>
             </tr>
         </tbody>
     </table>

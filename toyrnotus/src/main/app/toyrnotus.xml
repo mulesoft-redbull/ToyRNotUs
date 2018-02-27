@@ -8,6 +8,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     <apikit:config name="toyrnotus-config" raml="toyrnotus.raml" consoleEnabled="false" doc:name="Router"/>
     <flow name="toyrnotus-main">
         <http:listener config-ref="toyrnotus-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
+        <set-property propertyName="Access-Control-Allow-Origin" value="*"></set-property>
         <apikit:router config-ref="toyrnotus-config" doc:name="APIkit Router"/>
         <exception-strategy ref="toyrnotus-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
@@ -59,3 +60,4 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
         </apikit:mapping>
     </apikit:mapping-exception-strategy>
 </mule>
+
