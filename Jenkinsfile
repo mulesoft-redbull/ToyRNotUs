@@ -34,7 +34,7 @@ node {
                 sh "newman run toyrnotus/src/test/resources/api-test-scripts/toysrnotus.postman_collection.json --reporters cli,junit"
                 junit "newman/*.xml"
             }catch(err){
-                currentBuild.result = 'UNSTABLED'
+                currentBuild.result = 'UNSTABLE'
                 junit "newman/*.xml"
                 return
             }
