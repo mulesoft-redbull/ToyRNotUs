@@ -8,12 +8,12 @@ node {
         }
         stage ('Build') {
             sh "echo 'Building project'"
-            sh "toyrnotus/mvn clean package -s mvn-settings.xml"
+            sh "mvn -f toyrnotus/pom.xml clean package -s toyrnotus/mvn-settings.xml"
         }
         stage ('Deploy Dev') {
             sh "echo 'Deploying to DEV'"
             //sh "cd toyrnotus"
-            sh "mvn deploy -Dmule.env='Development' -DskipTests=true -s mvn-settings.xml"
+            sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Development' -DskipTests=true -s toyrnotus/mvn-settings.xml"
            
             /*
             parallel 'static': {
