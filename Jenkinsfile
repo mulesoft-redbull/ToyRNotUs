@@ -27,6 +27,11 @@ node {
             }
             */
         }
+        stage ('API-test-dev') {
+            sh "echo 'testing api on dev'"
+            sh "newman run toyrnotus/src/test/resources/api-test-scripts/toysrnotus.postman_collection.json"
+        }
+     
         
     } catch (err) {
         currentBuild.result = 'FAILED'
