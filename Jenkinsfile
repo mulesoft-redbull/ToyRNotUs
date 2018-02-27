@@ -7,9 +7,16 @@ node {
             git branch: "master", poll: true, url: 'https://github.com/mulesoft-redbull/ToyRNotUs.git'
         }
         stage ('Build') {
-            sh "echo 'shell scripts to build project...'"
+            sh "echo 'Building project'"
+            sh "cd toyrnotus"
+            sh "mvn clean package -s mvn-settings.xml"
         }
-        stage ('Tests') {
+        stage ('Deploy Dev') {
+            sh "echo 'Deploying to DEV'"
+            //sh "cd toyrnotus"
+            sh "mvn deploy -Dmule.env='Development' -DskipTests=true -s mvn-settings.xml"
+           
+            /*
             parallel 'static': {
                 sh "echo 'shell scripts to run static tests...'"
             },
@@ -19,10 +26,9 @@ node {
             'integration': {
                 sh "echo 'shell scripts to run integration tests...'"
             }
+            */
         }
-        stage ('Deploy') {
-            sh "echo 'shell scripts to deploy to server...'"
-        }
+        
     } catch (err) {
         currentBuild.result = 'FAILED'
         throw err
