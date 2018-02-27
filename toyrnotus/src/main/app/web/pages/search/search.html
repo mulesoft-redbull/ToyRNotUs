@@ -1,7 +1,29 @@
 <div class="container">
-    {{ controllerName }}
-    <table>
-        <thead>
+    <form style="margin-top:60px;">
+        <div class="row">
+            <div class="col">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Age Range</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Gender</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover" style="margin-top:50px;">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Toy Name</th>
@@ -14,14 +36,29 @@
 
         <tbody>
             <tr ng-disabled="!item.availability">
-                    <td>2</td>
-                    <td>43 Piece dinner set</td>
-                    <td>Female</td>
-                    <td>3_to_5</td>
-                    <td>12.95</td>
-                    <td>CoolKidz</td>
+                <td>2</td>
+                <td>43 Piece dinner set</td>
+                <td>Female</td>
+                <td>3_to_5</td>
+                <td>12.95</td>
+                <td>CoolKidz</td>
             </tr>
-            
+            <tr ng-disabled="!item.availability">
+                <td>2</td>
+                <td>43 Piece dinner set</td>
+                <td>Female</td>
+                <td>3_to_5</td>
+                <td>12.95</td>
+                <td>CoolKidz</td>
+            </tr>
+            <tr ng-disabled="!item.availability">
+                <td>2</td>
+                <td>43 Piece dinner set</td>
+                <td>Female</td>
+                <td>3_to_5</td>
+                <td>12.95</td>
+                <td>CoolKidz</td>
+            </tr>
         </tbody>
     </table>
 
