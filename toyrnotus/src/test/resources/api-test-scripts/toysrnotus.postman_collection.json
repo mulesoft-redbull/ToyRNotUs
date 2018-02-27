@@ -1,43 +1,196 @@
 {
-	"info": {
-		"name": "toysrnotus",
-		"_postman_id": "d5913d4d-978a-4796-aedd-721e2bbcb657",
-		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
+	"id": "7c1ff14f-052b-4a98-87b6-42d919ceb475",
+	"name": "ToyRNotUS",
+	"description": null,
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [
+		"56291c7a-a619-4dc0-be27-1f6276a6e03b",
+		"36c59f71-e5b0-4f63-8dda-2f7cdf378d0c",
+		"fcfebf27-b26c-43a5-8826-ece96e7cf1e7",
+		"f6147f13-d702-42d8-a848-575f1ecef439"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
 		{
-			"name": "test",
-			"event": [
+			"id": "36c59f71-e5b0-4f63-8dda-2f7cdf378d0c",
+			"name": "Development with Search and age for Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys?age=Baby",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "age",
+					"value": "Baby",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "a652bbf6-7a3c-4e97-b062-ae2f1a2313f8",
+						"id": "a1aff105-581f-46be-be28-5bbc15bb8fba",
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
+							"pm.test(\"Response is ok\", function() {",
 							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If only age is passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with age in query parameter\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(2)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "56291c7a-a619-4dc0-be27-1f6276a6e03b",
+			"name": "Development with Search and no Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "986e4fe2-3b4c-493a-903f-24a9e733d3d9",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If no queryparameter passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with no query parameter passed\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(10)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f6147f13-d702-42d8-a848-575f1ecef439",
+			"name": "Development with Search and age and gender Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys?age=Baby&gender=Male",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "age",
+					"value": "Baby",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "gender",
+					"value": "Male",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "effa9b5d-ea8e-439f-aac7-d6b3b397bac8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If only age is passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with age and gender in query parameter\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(2);",
 							"});"
 						]
 					}
 				}
 			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://www.google.com",
-					"protocol": "http",
-					"host": [
-						"www",
-						"google",
-						"com"
-					]
-				},
-				"description": "test"
-			},
-			"response": []
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "fcfebf27-b26c-43a5-8826-ece96e7cf1e7",
+			"name": "Development with Search and gender for Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys?gender=Male",
+			"description": "",
+			"data": null,
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "gender",
+					"value": "Male",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c54ecd71-f0f7-40b9-a81c-ed23ce64fcf4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If only gender is passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with gender in query parameter\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(2)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
 		}
 	]
 }
