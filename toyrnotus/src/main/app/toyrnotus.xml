@@ -20,13 +20,13 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
         <set-payload value="{&#xA;&quot;message&quot; : &quot;Toy updated.&quot;&#xA;}" doc:name="Set Payload"/>
     </flow>
     <flow name="get:/toys:toyrnotus-config">
-        <flow-ref name="getToysListSub_Flow" doc:name="gettoyslist"/>
+        <flow-ref name="getToysListSub_Flow" doc:name="getToysListSub_Flow"/>
     </flow>
     <flow name="get:/orders/{orderId}:toyrnotus-config">
         <set-payload value="{&#xA;  &quot;orderId&quot;:1,&#xA;  &quot;orderLineItems&quot;: [ {&#xA;  &quot;toyId&quot;: 2,&#xA;  &quot;quantity&quot;:2,&#xA;  &quot;unitPrice&quot;: 12.95&#xA;  }&#xA;  ],&#xA;  &quot;shippingAddress&quot;:{&#xA;  &quot;fullName&quot;: &quot;Tanet Gamchaitavonrattana&quot;,&#xA;  &quot;address1&quot;: &quot;54 North Sathorn&quot;,&#xA;  &quot;city&quot;: &quot;Bangkok&quot;,&#xA;  &quot;province&quot;: &quot;Bangkok&quot;,&#xA;  &quot;postcode&quot;: &quot;10500&quot;,&#xA;  &quot;telephone&quot;: &quot;+6623527866&quot;&#xA;  },&#xA;  &quot;shippingCost&quot;: 50&#xA;  }" doc:name="Set Payload"/>
     </flow>
     <flow name="get:/toys/{toyId}:toyrnotus-config">
-        <flow-ref name="getToyByIdSub_Flow" doc:name="gettoybyid"/>
+        <flow-ref name="getToyByIdSub_Flow" doc:name="getToyByIdSub_Flow"/>
     </flow>
     <flow name="post:/orders:application/json:toyrnotus-config">
         <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
