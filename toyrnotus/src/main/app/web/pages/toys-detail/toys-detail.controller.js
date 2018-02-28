@@ -4,7 +4,6 @@ app.controller('toys-detail-controller', function ($scope, $routeParams, toyServ
     $scope.toyId = $routeParams.toyId;
     $scope.toy = {};
 
-
     toyService.getToy($scope.toyId).then(
         function (result) {
             console.log(result);
@@ -20,7 +19,10 @@ app.controller('toys-detail-controller', function ($scope, $routeParams, toyServ
         let toyOrder = {
             "toyId": $scope.toy.toyId,
             "quantity": $scope.quantitySelect,
-            "unitPrice": $scope.toy.price
+            "unitPrice": $scope.toy.price,
+            "brand":$scope.toy.brand,
+            "age":$scope.toy.age,
+            "gender":$scope.toy.gender
         };
         //TODO consolidate same toy id in order
         toyService.orders.orderLineItems.push(toyOrder);
