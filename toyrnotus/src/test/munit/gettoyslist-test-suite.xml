@@ -7,8 +7,9 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <munit:config name="munit" doc:name="MUnit configuration"/>
     <spring:beans>
         <spring:import resource="classpath:gettoyslist.xml"/>
+        <spring:import resource="classpath:global.xml"/>
     </spring:beans>
-    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest" description="Test">
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid" description="Test">
         <munit:set payload="#[]" doc:name="Set Message">
             <munit:inbound-properties>
                 <munit:inbound-property key="http.query.params" value="#[['age': '3_to_5', 'gender': 'Female']]"/>
@@ -22,5 +23,16 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
             <munit:assert-true condition="#[payload.age == &quot;3_to_5&quot;]" doc:name="Is payload.age equal 3_to_5"/>
             <munit:assert-true condition="#[payload.gender == &quot;Female&quot;]" doc:name="Is payload.gender equal Female"/>
         </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Invalid" description="Test" ignore="true">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'dummy', 'gender': 'none']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.outboundProperties.'http.status' == 404]" doc:name="Is http status equal to 404"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
     </munit:test>
 </mule>

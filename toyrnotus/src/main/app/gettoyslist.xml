@@ -1,32 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
-http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
     <sub-flow name="getToysListSub_Flow">
         <set-variable variableName="age" value="#[message.inboundProperties.'http.query.params'.age]" doc:name="Set Age"/>
         <set-variable variableName="gender" value="#[message.inboundProperties.'http.query.params'.gender]" doc:name="Set Gender"/>
-        <set-payload value="[
-  {
-    &quot;toyId&quot;:2,
-    &quot;toyName&quot;:&quot;43 Piece dinner Set&quot;,
-    &quot;gender&quot;:&quot;Female&quot;,
-    &quot;age&quot;:&quot;3_to_5&quot;,
-    &quot;price&quot;:12.95,
-    &quot;quantity&quot;:100,
-    &quot;brand&quot;:&quot;CoolKidz&quot;
-  },
-  {
-    &quot;toyId&quot;:1,
-    &quot;toyName&quot;:&quot;Balance Training Bicycle&quot;,
-    &quot;gender&quot;:&quot;Female&quot;,
-    &quot;age&quot;:&quot;3_to_5&quot;,
-    &quot;price&quot;:199.95,
-    &quot;quantity&quot;:100,
-    &quot;brand&quot;:&quot;SportsFun&quot;
-  }
-]" mimeType="application/json" doc:name="Set Payload"/>
+        <set-variable variableName="query" value="" doc:name="Set Query"/>
+        <scripting:component doc:name="Process Query">
+            <scripting:script engine="Groovy"><![CDATA[flowVars.query = "SELECT * FROM Products";
+if(flowVars.age != null || flowVars.gender != null) {
+	flowVars.query += " WHERE ";
+	if(flowVars.age != null && flowVars.gender == null)
+		flowVars.query += "age=\"" + flowVars.age + "\" ";
+	else if(flowVars.gender != null && flowVars.age == null)
+		flowVars.query += "gender=\"" + flowVars.gender + "\" ";
+	else
+		flowVars.query += "age=\"" + flowVars.age + "\" AND gender=\"" + flowVars.gender + "\"";
+}
+	]]></scripting:script>
+        </scripting:component>
+        <db:select config-ref="MySQL_Configuration" doc:name="Query Database">
+            <db:dynamic-query><![CDATA[#[flowVars.query]]]></db:dynamic-query>
+        </db:select>
+        <choice doc:name="Choice">
+            <when expression="#[payload.size() &gt; 0]">
+                <dw:transform-message doc:name="Transform Message">
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+---
+payload map ((product , idx) -> {
+
+	toyId: product.toyId,
+    toyName: product.toyName,
+    gender: product.gender,
+    age: product.age,
+    price: product.price,
+    quantity: product.availability,
+    brand: product.brand
+
+})]]></dw:set-payload>
+                </dw:transform-message>
+            </when>
+            <otherwise>
+                <set-property propertyName="http.status" value="#[404]" doc:name="404"/>
+                <set-payload value="#[null]" doc:name="Set Null Payload"/>
+            </otherwise>
+        </choice>
+        <logger message="#[message]" level="INFO" doc:name="Logger"/>
     </sub-flow>
 </mule>
