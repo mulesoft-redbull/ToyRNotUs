@@ -14,6 +14,5 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
             </munit:inbound-properties>
         </munit:set>
         <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
-        <munit:assert-true condition="#[(message.outboundProperties.'http.status' == 200)&amp;&amp;(message.payload != null)]" doc:name="Assert True"/>
     </munit:test>
 </mule>
