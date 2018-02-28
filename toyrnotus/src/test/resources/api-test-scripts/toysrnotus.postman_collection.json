@@ -13,7 +13,8 @@
 		"ea3a8145-f336-421c-9e03-e0b098cda4e1",
 		"217b5000-566d-4550-978d-269ee2fa0239",
 		"49a7bd96-8af3-496b-8694-1ad5d0a588a4",
-		"a8a6ebcc-b4ff-40da-bd51-76a0a9e75b9d"
+		"a8a6ebcc-b4ff-40da-bd51-76a0a9e75b9d",
+		"32841b7b-1103-4415-a751-02ad8578f3c3"
 	],
 	"folders_order": [],
 	"folders": [],
@@ -47,6 +48,42 @@
 			],
 			"folder": null,
 			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "32841b7b-1103-4415-a751-02ad8578f3c3",
+			"name": "Development with Search order unsuccessfully",
+			"url": "http://188.166.213.123:8081/api/orders/0",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1851913d-e6ae-4139-a74b-b7f29829fe11",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response product not found\", function() {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\n  \"orderLineItems\": [ {\n      \"toyId\": 2,\n      \"quantity\":2,\n      \"unitPrice\": 12.95\n    }\n  ],\n  \"shippingAddress\":{\n    \"fullName\": \"Tanet Gamchaitavonrattana\",\n    \"address1\": \"54 North Sathorn\",\n    \"city\": \"Bangkok\",\n    \"province\": \"Bangkok\",\n    \"postcode\": \"10500\",\n    \"telephone\": \"+6623527866\"\n  },\n  \"shippingCost\": 50\n}",
+			"headers": "Content-Type: application/json\n",
 			"pathVariables": {}
 		},
 		{
@@ -342,41 +379,4 @@
 			"dataMode": "params",
 			"headerData": [],
 			"method": "GET",
-			"pathVariableData": [],
-			"queryParams": [
-				{
-					"key": "gender",
-					"value": "Male",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"auth": null,
-			"events": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c54ecd71-f0f7-40b9-a81c-ed23ce64fcf4",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Response is ok\", function() {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"//If only gender is passed, test to ensure that data return more than 10 records",
-							"pm.test(\"Search with gender in query parameter\", function() {",
-							"    var body = JSON.parse(responseBody);",
-							"    pm.expect(body.length).to.gte(2)",
-							"});",
-							""
-						]
-					}
-				}
-			],
-			"folder": null,
-			"headers": "",
-			"pathVariables": {}
-		}
-	]
-}
+	
