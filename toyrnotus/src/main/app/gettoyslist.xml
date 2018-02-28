@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+    <sub-flow name="getToysListSub_Flow">
+        <set-payload value="[
+  {
+    &quot;toyId&quot;:2,
+    &quot;toyName&quot;:&quot;43 Piece dinner Set&quot;,
+    &quot;gender&quot;:&quot;Female&quot;,
+    &quot;age&quot;:&quot;3_to_5&quot;,
+    &quot;price&quot;:12.95,
+    &quot;quantity&quot;:100,
+    &quot;brand&quot;:&quot;CoolKidz&quot;
+  },
+  {
+    &quot;toyId&quot;:1,
+    &quot;toyName&quot;:&quot;Balance Training Bicycle&quot;,
+    &quot;gender&quot;:&quot;Neutral&quot;,
+    &quot;age&quot;:&quot;3_to_5&quot;,
+    &quot;price&quot;:199.95,
+    &quot;quantity&quot;:100,
+    &quot;brand&quot;:&quot;SportsFun&quot;
+  }
+]" doc:name="Set Payload"/>
+    </sub-flow>
+</mule>
