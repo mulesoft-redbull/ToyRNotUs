@@ -1,1 +1,40 @@
-{{ controllerName }}
+<div class="card">
+        <div class="card-body">
+          Shopping Cart
+        </div>
+      </div>
+<table class="table table-bordered table-hover" >
+    <thead class="thead-dark">
+        <tr>
+            <th>Items</th>
+            <th>Quantity</th>
+            <th>Price (THB)</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="lineItem in shoppingCart" ng-click="">
+            <td>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>
+                        <b>Brand</b> : {{toy.brand}}</li>
+                    <li>
+                        <b>Age</b> : {{toy.age}}</li>
+                    <li>
+                        <b>Gender</b> : {{toy.gender}}</li>
+                    <li class="text-success">
+                        <b>In stock</b>
+                    </li>
+                    <!-- <li><b>Quantity</b> :  {{toy.quantity}}</li> -->
+                </ul>
+            </td>
+            <td>
+                <!-- <select class="custom-select" id="quantitySelect" name="quantitySelect" ng-model="quantitySelect">
+                    <option ng-repeat="i in range(toy.quantity) track by $index">{{$index+1}}</option>
+                </select> -->
+            </td>
+            <td> {{lineItem.unitPrice * lineItem.quantity}}</td>
+        </tr>
+    </tbody>
+</table>
