@@ -1,22 +1,26 @@
-app.controller('search-controller', function ($scope, toyService) {
+app.controller('search-controller', function ($scope, toyService,$location) {
 
     $scope.controllerName = 'search-controller';
 
-    $scope.ageList = ['Toddler', 'Baby', '3_to_5', '6_to_8', 'over8'];
-    $scope.genderList = ['Male', 'Female', 'Neutral'];
+    $scope.ageList = ['All', 'Toddler', 'Baby', '3_to_5', '6_to_8', 'over8'];
+    $scope.genderList = ['Neutral', 'Male', 'Female'];
     $scope.toyList = [];
 
-    $scope.searchToys = function () {
-        
-        toyService.getToys().then(
+    $scope.searchToys = function (age, gender) {
+
+        toyService.getToys(age, gender).then(
             function (result) {
-                alert(result.data);
                 console.log(result);
                 $scope.toyList = result.data;
             }, function (err) {
-                alert(err);
+                //alert(err);
                 console.log(err);
             }
         );
     }
+
+    $scope.toyItemIsSelected = function(toyId){
+        $location.path('/toys-detail/' + toyId);
+    }
+
 });

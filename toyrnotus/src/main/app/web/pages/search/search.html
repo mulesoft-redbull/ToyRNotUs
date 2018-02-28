@@ -3,20 +3,18 @@
         <div class="row">
             <div class="col-5">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Age Range</label>
-                <select class="custom-select mr-sm-2" id="ageSelect">
-                    <option selected>Choose...</option>
-                    <option ng-repeat="age in ageList">{{age}}</option>
+                <select class="custom-select mr-sm-2" id="ageSelect" name="ageSelect" ng-init="ageSelected = ageList[0]" ng-model="ageSelected"
+                    ng-options="age for age in ageList">
                 </select>
             </div>
             <div class="col-5">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Gender</label>
-                <select class="custom-select mr-sm-2" id="genderSelect">
-                    <option selected>Choose...</option>
-                    <option ng-repeat="gender in genderList">{{gender}}</option>
+                <select class="custom-select mr-sm-2" id="genderSelect" name="genderSelect" ng-init="genderSelected = genderList[0]" ng-model="genderSelected"
+                    ng-options="gender for gender in genderList">
                 </select>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-primary btn-search" id="searchButton" ng-click="searchToys()">Search</button>
+                <button type="button" class="btn btn-primary btn-search" id="searchButton" name="searchButton" ng-click="searchToys(ageSelected,genderSelected)">Search</button>
             </div>
         </div>
     </form>
@@ -34,7 +32,7 @@
         </thead>
 
         <tbody>
-            <tr ng-repeat="toy in toyList">
+            <tr ng-repeat="toy in toyList" ng-click="toyItemIsSelected(toy.toyId)" id="toy-row-{{toy.toyId}}">
                 <td>{{toy.toyId}}</td>
                 <td> {{toy.toyName}}</td>
                 <td> {{toy.gender}}</td>

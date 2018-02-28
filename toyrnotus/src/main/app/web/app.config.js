@@ -7,7 +7,7 @@ function config($routeProvider) {
       templateUrl: 'pages/search/search.html',
       controller: 'search-controller'
     })
-    .when('/toys-detail', {
+    .when('/toys-detail/:toyId', {
         templateUrl: 'pages/toys-detail/toys-detail.html',
         controller: 'toys-detail-controller'
     })
