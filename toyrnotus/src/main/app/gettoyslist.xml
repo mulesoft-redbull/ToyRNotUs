@@ -21,12 +21,12 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
   {
     &quot;toyId&quot;:1,
     &quot;toyName&quot;:&quot;Balance Training Bicycle&quot;,
-    &quot;gender&quot;:&quot;Neutral&quot;,
+    &quot;gender&quot;:&quot;Female&quot;,
     &quot;age&quot;:&quot;3_to_5&quot;,
     &quot;price&quot;:199.95,
     &quot;quantity&quot;:100,
     &quot;brand&quot;:&quot;SportsFun&quot;
   }
-]" doc:name="Set Payload"/>
+]" mimeType="application/json" doc:name="Set Payload"/>
     </sub-flow>
 </mule>
