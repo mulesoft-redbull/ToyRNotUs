@@ -5,10 +5,10 @@ app.controller('shopping-cart-controller', function ($scope, $routeParams, toySe
 
     $scope.shoppingCart = toyService.orders.orderLineItems;
 
-    $scope.shoppingCart.forEach(function (element) {
+    $scope.shoppingCart.forEach((item, index) => {
 
-        toyService.getToy(element.toyId).then(
-            function (result, index) {
+        toyService.getToy(item.toyId).then(
+            function (result) {
                 console.log(result);
                 console.log(index);
                 console.log($scope.shoppingCart[index]);
@@ -21,5 +21,6 @@ app.controller('shopping-cart-controller', function ($scope, $routeParams, toySe
                 console.log(err);
             }
         );
+
     });
 });
