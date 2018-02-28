@@ -22,7 +22,7 @@ Check product detail
     Click Button    id:addToCart
 Change quantity
     sleep    5s
-    Select From List By Label    id:cart-row-1-quantity    2
+    Select From List By Label    id:toy-quantity-2    2
     sleep    5s
     Page Should Contain    75.90
     click Button    id:checkout
