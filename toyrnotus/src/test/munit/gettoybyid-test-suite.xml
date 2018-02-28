@@ -15,7 +15,7 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
                 <munit:invocation-property key="toyID" value="2"/>
             </munit:invocation-properties>
         </munit:set>
-        <flow-ref name="getToyByIdSub_Flow" doc:name="Flow-ref to getToyByIdSub_Flow"/>
+        <flow-ref name="getToyByIdSub_Flow" doc:name="getToyByIdSub_Flow"/>
 		<json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
         <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
         <munit:assert-true condition="#[payload.age == &quot;3_to_5&quot;]" doc:name="Is payload.age equal 3_to_5"/>
