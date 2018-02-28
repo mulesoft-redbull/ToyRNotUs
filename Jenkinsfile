@@ -48,6 +48,7 @@ node {
                 sh "robot toyrnotus/src/test/resources/ui-test-scripts/toyrnotus.robot"
             }catch(err){
                 currentBuild.result = 'UNSTABLE'
+                junit "output.xml"
                 return
             }
             
