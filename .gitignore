@@ -26,14 +26,15 @@ hs_err_pid*
 .classpath
 
 # Target marven build output
-*/target
-*/.mule
-*/.settings
+**/target
+**/.mule
+**/.settings
 
 # node
 
-*/node_modules
+**/node_modules
 
 # robot
-*/ui-test-scripts/*.html
-*/ui-test-scripts/*.png
+**/ui-test-scripts/*.html
+**/ui-test-scripts/*.xml
+**/ui-test-scripts/*.png

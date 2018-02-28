@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
     <munit:config name="munit" doc:name="MUnit configuration"/>
@@ -8,6 +10,15 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
         <spring:import resource="classpath:gettoybyid.xml"/>
     </spring:beans>
     <munit:test name="gettoybyid-test-suite-getToyByIdSub_FlowTest" description="Test">
-        <flow-ref name="getToyByIdSub_Flow" doc:name="Flow-ref to getToyByIdSub_Flow"/>
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:invocation-properties>
+                <munit:invocation-property key="toyID" value="2"/>
+            </munit:invocation-properties>
+        </munit:set>
+        <flow-ref name="getToyByIdSub_Flow" doc:name="getToyByIdSub_Flow"/>
+		<json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[payload.age == &quot;3_to_5&quot;]" doc:name="Is payload.age equal 3_to_5"/>
+        <munit:assert-true condition="#[payload.gender == &quot;Female&quot;]" doc:name="Is payload.gender equal Female"/>
     </munit:test>
 </mule>

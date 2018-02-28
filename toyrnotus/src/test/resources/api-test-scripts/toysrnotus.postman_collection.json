@@ -379,4 +379,41 @@
 			"dataMode": "params",
 			"headerData": [],
 			"method": "GET",
-	
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "gender",
+					"value": "Male",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c54ecd71-f0f7-40b9-a81c-ed23ce64fcf4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If only gender is passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with gender in query parameter\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(2)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}

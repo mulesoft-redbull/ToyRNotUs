@@ -41,6 +41,19 @@ node {
             
         }
      
+        stage ('UI-test-dev') {
+            sh "echo 'testing ui on dev'"
+            
+            try{
+                sh "robot toyrnotus/src/test/resources/ui-test-scripts/toyrnotus.robot"
+            }catch(err){
+                currentBuild.result = 'UNSTABLE'
+                //junit "output.xml"
+                return
+            }
+            
+        }
+     
         
     } catch (err) {
         currentBuild.result = 'FAILED'
