@@ -19,4 +19,11 @@ app.service('toyService', function ($http) {
         return $http.get(getToysUrl);
     }
 
+    this.getToy = function(toyId){
+
+        var getToyUrl = baseUrl + "/toys/"+toyId;
+        
+        return $http.get(getToyUrl);
+    }
+
 });
