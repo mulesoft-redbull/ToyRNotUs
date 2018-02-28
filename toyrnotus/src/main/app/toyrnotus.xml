@@ -30,7 +30,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     </flow>
     <flow name="post:/orders:application/json:toyrnotus-config">
         <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
-        <set-payload value="{&#xA;&quot;message&quot; : &quot;Order created&quot;,&#xA;&quot;orderId&quot; : 1234&#xA;}" doc:name="Set Payload"/>
+        <flow-ref name="postorderFlow1" doc:name="postorderFlow"/>
     </flow>
     <apikit:mapping-exception-strategy name="toyrnotus-apiKitGlobalExceptionMapping">
         <apikit:mapping statusCode="404">
