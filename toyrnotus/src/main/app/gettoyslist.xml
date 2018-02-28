@@ -6,6 +6,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
     <sub-flow name="getToysListSub_Flow">
+        <set-variable variableName="age" value="#[message.inboundProperties.'http.query.params'.age]" doc:name="Set Age"/>
+        <set-variable variableName="gender" value="#[message.inboundProperties.'http.query.params'.gender]" doc:name="Set Gender"/>
         <set-payload value="[
   {
     &quot;toyId&quot;:2,

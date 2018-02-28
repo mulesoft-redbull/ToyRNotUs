@@ -33,3 +33,7 @@ hs_err_pid*
 # node
 
 */node_modules
+
+# robot
+*/ui-test-scripts/*.html
+*/ui-test-scripts/*.png
