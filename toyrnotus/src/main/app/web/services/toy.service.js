@@ -1,12 +1,12 @@
 
 app.service('toyService', function ($http) {
 
-    //var baseUrl = "/api";
-    var baseUrl = "http://188.166.213.123:8081/api";
+    var baseUrl = "/api";
+    //var baseUrl = "http://188.166.213.123:8081/api";
     //var baseUrl = "http://localhost:8081/api";
     this.orders = {};
 
-    this.initialOrder = function(){
+    this.initialOrder = function () {
         var orders = {
             "orderLineItems": [
             ],
@@ -25,7 +25,7 @@ app.service('toyService', function ($http) {
 
     this.initialOrder();
 
-   
+
 
     this.transformPostOrder = function (orders) {
 
@@ -80,11 +80,11 @@ app.service('toyService', function ($http) {
         return $http.get(getToyUrl);
     }
 
-    this.createOrder = function(){
-        this.orders = this.transformPostOrder(this.orders);
+    this.createOrder = function () {
+        let finalOrder = this.transformPostOrder(this.orders);
         console.log(this.orders);
         var createOrderUrl = baseUrl + "/orders/";
-        return $http.post(createOrderUrl, this.orders);
+        return $http.post(createOrderUrl, finalOrder);
     }
 
 });
