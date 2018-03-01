@@ -11,12 +11,12 @@ app.service('toyService', function ($http) {
             "orderLineItems": [
             ],
             "shippingAddress": {
-                "fullName": "",
-                "address1": "",
-                "city": "",
-                "province": "",
-                "postcode": "",
-                "telephone": ""
+                "fullName": "John Doe",
+                "address1": "51/4",
+                "city": "Bangkok",
+                "province": "Bangkok",
+                "postcode": "10310",
+                "telephone": "08xxxxxxxx"
             },
             "shippingCost": 50
         };
