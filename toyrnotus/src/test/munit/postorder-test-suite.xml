@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/mock http://www.mulesoft.org/schema/mule/moc
         <spring:import resource="classpath:postorder.xml"/>
         <spring:import resource="classpath:global.xml"/>
     </spring:beans>
-    <munit:test name="postorder-test-suite-postorderFlowTest" description="Test">
+    <munit:test name="postorder-test-suite-postorderFlowTest" description="Test" ignore="true">
         <mock:when messageProcessor=".*:.*" doc:name="Mock">
             <mock:with-attributes>
                 <mock:with-attribute name="doc:name" whereValue="#['Database']"/>
