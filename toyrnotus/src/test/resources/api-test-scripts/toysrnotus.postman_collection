@@ -1,0 +1,418 @@
+{
+	"id": "7c1ff14f-052b-4a98-87b6-42d919ceb475",
+	"name": "ToyRNotUS",
+	"description": null,
+	"auth": null,
+	"events": null,
+	"variables": null,
+	"order": [
+		"56291c7a-a619-4dc0-be27-1f6276a6e03b",
+		"36c59f71-e5b0-4f63-8dda-2f7cdf378d0c",
+		"fcfebf27-b26c-43a5-8826-ece96e7cf1e7",
+		"f6147f13-d702-42d8-a848-575f1ecef439",
+		"ea3a8145-f336-421c-9e03-e0b098cda4e1",
+		"217b5000-566d-4550-978d-269ee2fa0239",
+		"49a7bd96-8af3-496b-8694-1ad5d0a588a4",
+		"a8a6ebcc-b4ff-40da-bd51-76a0a9e75b9d",
+		"32841b7b-1103-4415-a751-02ad8578f3c3"
+	],
+	"folders_order": [],
+	"folders": [],
+	"requests": [
+		{
+			"id": "217b5000-566d-4550-978d-269ee2fa0239",
+			"name": "Development unsuccess case for product detail",
+			"url": "http://188.166.213.123:8081/api/toys/0",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f01d0bef-1343-4a61-a6f4-e06c9d48a71a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "32841b7b-1103-4415-a751-02ad8578f3c3",
+			"name": "Development with Search order unsuccessfully",
+			"url": "http://188.166.213.123:8081/api/orders/0",
+			"description": "",
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1851913d-e6ae-4139-a74b-b7f29829fe11",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response product not found\", function() {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\n  \"orderLineItems\": [ {\n      \"toyId\": 2,\n      \"quantity\":2,\n      \"unitPrice\": 12.95\n    }\n  ],\n  \"shippingAddress\":{\n    \"fullName\": \"Tanet Gamchaitavonrattana\",\n    \"address1\": \"54 North Sathorn\",\n    \"city\": \"Bangkok\",\n    \"province\": \"Bangkok\",\n    \"postcode\": \"10500\",\n    \"telephone\": \"+6623527866\"\n  },\n  \"shippingCost\": 50\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "36c59f71-e5b0-4f63-8dda-2f7cdf378d0c",
+			"name": "Development with Search and age for Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys?age=Baby",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "age",
+					"value": "Baby",
+					"equals": true,
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1aff105-581f-46be-be28-5bbc15bb8fba",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If only age is passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with age in query parameter\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(2)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "49a7bd96-8af3-496b-8694-1ad5d0a588a4",
+			"name": "Development with successful order product",
+			"url": "http://188.166.213.123:8081/api/orders",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "675ab8f4-2688-43fe-b013-9b9c913dd46f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Create order\", function() {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"//Check if order create with message order created",
+							"pm.test(\"Check if order created\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.message).to.eql(\"Order created\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\n  \"orderLineItems\": [ {\n      \"toyId\": 2,\n      \"quantity\":2,\n      \"unitPrice\": 12.95\n    }\n  ],\n  \"shippingAddress\":{\n    \"fullName\": \"Tanet Gamchaitavonrattana\",\n    \"address1\": \"54 North Sathorn\",\n    \"city\": \"Bangkok\",\n    \"province\": \"Bangkok\",\n    \"postcode\": \"10500\",\n    \"telephone\": \"+6623527866\"\n  },\n  \"shippingCost\": 50\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "56291c7a-a619-4dc0-be27-1f6276a6e03b",
+			"name": "Development with Search and no Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "986e4fe2-3b4c-493a-903f-24a9e733d3d9",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If no queryparameter passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with no query parameter passed\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(10)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "a8a6ebcc-b4ff-40da-bd51-76a0a9e75b9d",
+			"name": "Development with Search order successfully",
+			"url": "http://188.166.213.123:8081/api/orders/1",
+			"description": null,
+			"data": [],
+			"dataMode": "raw",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07628008-b33e-47e2-a470-e15b98194835",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//Check if order create with message order created",
+							"pm.test(\"check if order exist\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.orderId).to.eql(1);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\n  \"orderLineItems\": [ {\n      \"toyId\": 2,\n      \"quantity\":2,\n      \"unitPrice\": 12.95\n    }\n  ],\n  \"shippingAddress\":{\n    \"fullName\": \"Tanet Gamchaitavonrattana\",\n    \"address1\": \"54 North Sathorn\",\n    \"city\": \"Bangkok\",\n    \"province\": \"Bangkok\",\n    \"postcode\": \"10500\",\n    \"telephone\": \"+6623527866\"\n  },\n  \"shippingCost\": 50\n}",
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "ea3a8145-f336-421c-9e03-e0b098cda4e1",
+			"name": "Development success case for product detail",
+			"url": "http://188.166.213.123:8081/api/toys/2",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c00fea97-6b93-4437-a1c0-8a3fb7267816",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Check on toyId\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.toyId).to.eql(2);",
+							"});",
+							"",
+							"pm.test(\"Check on toyName\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.toyName).to.eql(\"43 Piece dinner Set\");",
+							"});",
+							"",
+							"pm.test(\"Check on gender\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.gender).to.eql(\"Female\");",
+							"});",
+							"",
+							"pm.test(\"Check on age\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.age).to.eql(\"3_to_5\");",
+							"});",
+							"",
+							"pm.test(\"Check on price\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.price).to.eql(12.95);",
+							"});",
+							"",
+							"pm.test(\"Check on quantity\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.quantity).to.eql(100);",
+							"});",
+							"",
+							"pm.test(\"Check on brand\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.brand).to.eql(\"CoolKidz\");",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "f6147f13-d702-42d8-a848-575f1ecef439",
+			"name": "Development with Search and age and gender Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys?age=Baby&Gender=Neutral",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "age",
+					"value": "Baby",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Gender",
+					"value": "Neutral",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "effa9b5d-ea8e-439f-aac7-d6b3b397bac8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If only age is passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with age and gender in query parameter\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(2);",
+							"});"
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "fcfebf27-b26c-43a5-8826-ece96e7cf1e7",
+			"name": "Development with Search and gender for Query Parameter",
+			"url": "http://188.166.213.123:8081/api/toys?Gender=Neutral",
+			"description": null,
+			"data": [],
+			"dataMode": "params",
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "Gender",
+					"value": "Neutral",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c54ecd71-f0f7-40b9-a81c-ed23ce64fcf4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//If only gender is passed, test to ensure that data return more than 10 records",
+							"pm.test(\"Search with gender in query parameter\", function() {",
+							"    var body = JSON.parse(responseBody);",
+							"    pm.expect(body.length).to.gte(2)",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		}
+	]
+}
