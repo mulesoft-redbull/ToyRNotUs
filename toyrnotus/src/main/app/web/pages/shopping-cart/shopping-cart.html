@@ -46,7 +46,7 @@
             <td>
 
                 <b>Quantity</b> :
-                <select class="custom-select" id="toyQuantity{{toyId}}" name="toyQuantity{{toyId}}" ng-model="lineItem.quantity" ng-change="calculateTotalPrice()">
+                <select class="custom-select" id="toyQuantity{{lineItem.toyId}}" name="toyQuantity{{lineItem.toyId}}" ng-model="lineItem.quantity" ng-change="calculateTotalPrice()">
                     <option ng-repeat="i in range(100) track by $index" ng-selected="i == lineItem.quantity">{{$index+1}}</option>
                 </select>
 
@@ -100,7 +100,7 @@
     
             </div>
             <div class="col col-lg-4">
-                <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-hide="shoppingCart.length == 0" ng-click="">Check out</button>
+                <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-hide="shoppingCart.length == 0" ng-click="processToCheckOut()">Process To Check out</button>
             </div>
         </div>
 </div>
