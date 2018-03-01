@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
         <spring:import resource="classpath:gettoyslist.xml"/>
         <spring:import resource="classpath:global.xml"/>
     </spring:beans>
-    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid" description="Test">
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs3_to_5-GenderIsFemale" description="Test">
         <munit:set payload="#[]" doc:name="Set Message">
             <munit:inbound-properties>
                 <munit:inbound-property key="http.query.params" value="#[['age': '3_to_5', 'gender': 'Female']]"/>
@@ -22,6 +22,298 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
         <foreach collection="#[payload]" doc:name="For Each">
             <munit:assert-true condition="#[payload.age == &quot;3_to_5&quot;]" doc:name="Is payload.age equal 3_to_5"/>
             <munit:assert-true condition="#[payload.gender == &quot;Female&quot;]" doc:name="Is payload.gender equal Female"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs6_to_8-GenderIsFemale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': '6_to_8', 'gender': 'Female']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;6_to_8&quot;]" doc:name="Is payload.age equal 6_to_8"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Female&quot;]" doc:name="Is payload.gender equal Female"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsOver8-GenderIsFemale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Over8', 'gender': 'Female']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Over8&quot;]" doc:name="Is payload.age equal Over8"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Female&quot;]" doc:name="Is payload.gender equal Female"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsToddler-GenderIsFemale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Toddler', 'gender': 'Female']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Toddler&quot;]" doc:name="Is payload.age equal Toddler"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Female&quot;]" doc:name="Is payload.gender equal Female"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs3_to_5-GenderIsMale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': '3_to_5', 'gender': 'Male']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;3_to_5&quot;]" doc:name="Is payload.age equal 3_to_5"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Male&quot;]" doc:name="Is payload.gender equal Male"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs6_to_8-GenderIsMale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': '6_to_8', 'gender': 'Male']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;6_to_8&quot;]" doc:name="Is payload.age equal 6_to_8"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Male&quot;]" doc:name="Is payload.gender equal Male"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsOver8-GenderIsMale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Over8', 'gender': 'Male']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Over8&quot;]" doc:name="Is payload.age equal Over8"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Male&quot;]" doc:name="Is payload.gender equal Male"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsToddler-GenderIsMale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Toddler', 'gender': 'Male']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Toddler&quot;]" doc:name="Is payload.age equal Toddler"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Male&quot;]" doc:name="Is payload.gender equal Male"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs3_to_5-GenderIsNeutral" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': '3_to_5', 'gender': 'Neutral']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;3_to_5&quot;]" doc:name="Is payload.age equal 3_to_5"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Neutral&quot;]" doc:name="Is payload.gender equal Neutral"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs6_to_8-GenderIsNeutral" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': '6_to_8', 'gender': 'Neutral']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;6_to_8&quot;]" doc:name="Is payload.age equal 6_to_8"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Neutral&quot;]" doc:name="Is payload.gender equal Neutral"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsOver8-GenderIsNeutral" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Over8', 'gender': 'Neutral']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Over8&quot;]" doc:name="Is payload.age equal Over8"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Neutral&quot;]" doc:name="Is payload.gender equal Neutral"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsBaby-GenderIsNeutral" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Baby', 'gender': 'Neutral']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Baby&quot;]" doc:name="Is payload.age equal Baby"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Neutral&quot;]" doc:name="Is payload.gender equal Neutral"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsToddler-GenderIsNeutral" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Toddler', 'gender': 'Neutral']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Toddler&quot;]" doc:name="Is payload.age equal Toddler"/>
+            <munit:assert-true condition="#[payload.gender == &quot;Neutral&quot;]" doc:name="Is payload.gender equal Neutral"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs3_to_5-GenderIsNone" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': '3_to_5']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;3_to_5&quot;]" doc:name="Is payload.age equal 3_to_5"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIs6_to_8-GenderIsNone" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': '6_to_8']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;6_to_8&quot;]" doc:name="Is payload.age equal 6_to_8"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsBaby-GenderIsNone" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Baby']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Baby&quot;]" doc:name="Is payload.age equal Baby"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsOver8-GenderIsNone" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Over8']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Over8&quot;]" doc:name="Is payload.age equal Over8"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsToddler-GenderIsNone" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['age': 'Toddler']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.age == &quot;Toddler&quot;]" doc:name="Is payload.age equal Toddler"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsNone-GenderIsFemale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['gender': 'Female']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.gender == &quot;Female&quot;]" doc:name="Is payload.age equal Female"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsNone-GenderIsMale" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['gender': 'Male']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.gender == &quot;Male&quot;]" doc:name="Is payload.age equal Male"/>
+        </foreach>
+    </munit:test>
+    <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Valid-AgeIsNone-GenderIsNeutral" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[['gender': 'Neutral']]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() &gt;= 0]" doc:name="Is payload size more than zero"/>
+        <foreach collection="#[payload]" doc:name="For Each">
+            <munit:assert-true condition="#[payload.gender == &quot;Neutral&quot;]" doc:name="Is payload.age equal Neutral"/>
         </foreach>
     </munit:test>
     <munit:test name="gettoyslist-test-suite-getToysListSub_FlowTest-Invalid" description="Test" >

@@ -32,7 +32,7 @@
         </thead>
 
         <tbody>
-            <tr ng-repeat="toy in toyList" ng-click="toyItemIsSelected(toy.toyId)" id="toy-row-{{toy.toyId}}">
+            <tr ng-repeat="toy in toyList | orderBy:'toyId'" ng-click="toyItemIsSelected(toy.toyId)" id="toy-row-{{toy.toyId}}">
                 <td>{{toy.toyId}}</td>
                 <td> {{toy.toyName}}</td>
                 <td> {{toy.gender}}</td>
