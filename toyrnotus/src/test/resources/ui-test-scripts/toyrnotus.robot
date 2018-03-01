@@ -76,7 +76,7 @@ Search Product
     Select From List By Label    id:ageSelect    3_to_5
     Select From List By Label    id:genderSelect    Female
     Click Button    id:searchButton
-    sleep    1s
+    sleep    3s
 
 Add Product to cart
     [Arguments]  ${quantity}
