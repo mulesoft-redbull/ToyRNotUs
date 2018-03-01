@@ -18,6 +18,9 @@ app.controller('shopping-cart-controller', function ($scope, $routeParams, toySe
         });
     }
 
+    $scope.processToCheckOut= function(){
+        $location.path("/shipping-detail");
+    }
 
     $scope.range = function (n) {
         return new Array(n);
