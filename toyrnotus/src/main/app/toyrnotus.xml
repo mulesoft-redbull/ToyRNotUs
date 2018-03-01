@@ -9,6 +9,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     <flow name="toyrnotus-main">
         <http:listener config-ref="toyrnotus-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
         <set-property propertyName="Access-Control-Allow-Origin" value="*" doc:name="Property"></set-property>
+        <set-property propertyName="Access-Control-Allow-Methods" value="GET, POST, DELETE, PUT" doc:name="Property"/>
         <apikit:router config-ref="toyrnotus-config" doc:name="APIkit Router"/>
         <exception-strategy ref="toyrnotus-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>

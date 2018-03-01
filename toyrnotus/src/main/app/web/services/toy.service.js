@@ -2,8 +2,8 @@
 app.service('toyService', function ($http) {
 
     //var baseUrl = "/api";
-    var baseUrl = "http://188.166.213.123:8081/api";
-
+    //var baseUrl = "http://188.166.213.123:8081/api";
+    var baseUrl = "http://localhost:8081/api";
     this.orders = {};
 
     this.initialOrder = function(){
@@ -45,12 +45,12 @@ app.service('toyService', function ($http) {
         let finalOrder = {
             "orderLineItems": finalLineItems,
             "shippingAddress": {
-                "fullName": orders.fullName,
-                "address1": orders.address1,
-                "city": orders.city,
-                "province": orders.province,
-                "postcode": orders.postcode,
-                "telephone": orders.telephone
+                "fullName": orders.shippingAddress.fullName,
+                "address1": orders.shippingAddress.address1,
+                "city": orders.shippingAddress.city,
+                "province": orders.shippingAddress.province,
+                "postcode": orders.shippingAddress.postcode,
+                "telephone": orders.shippingAddress.telephone
             },
             "shippingCost": 50
         };
@@ -82,6 +82,7 @@ app.service('toyService', function ($http) {
 
     this.createOrder = function(){
         this.orders = this.transformPostOrder(this.orders);
+        console.log(this.orders);
         var createOrderUrl = baseUrl + "/orders/";
         return $http.post(createOrderUrl, this.orders);
     }
