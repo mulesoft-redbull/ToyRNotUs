@@ -46,7 +46,8 @@
             <td>
 
                 <b>Quantity</b> :
-                <select class="custom-select" id="toyQuantity{{lineItem.toyId}}" name="toyQuantity{{lineItem.toyId}}" ng-model="lineItem.quantity" ng-change="calculateTotalPrice()">
+                <select class="custom-select" id="toyQuantity{{lineItem.toyId}}" name="toyQuantity{{lineItem.toyId}}" ng-model="lineItem.quantity"
+                    ng-change="calculateTotalPrice()">
                     <option ng-repeat="i in range(100) track by $index" ng-selected="i == lineItem.quantity">{{$index+1}}</option>
                 </select>
 
@@ -72,36 +73,36 @@
     </div>
     <div class="row">
         <div class="col">
-            Shipping fee: 50.00 THB
+            Shipping fee: {{shippingCost}} THB
         </div>
         <div class="col-md-auto">
 
         </div>
         <div class="col col-lg-4">
-            <b> Shipping fee: 50.00 THB</b>
+            <b> Shipping fee: {{shippingCost}} THB</b>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            
+
         </div>
         <div class="col-md-auto">
 
         </div>
         <div class="col col-lg-4">
-            <b> Total {{totalPrice+50 | number:2}}</b>
+            <b> Total {{totalPrice+shippingCost | number:2}}</b>
         </div>
     </div>
     <div class="row">
-            <div class="col">
-               
-            </div>
-            <div class="col-md-auto">
-    
-            </div>
-            <div class="col col-lg-4">
-                <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-hide="shoppingCart.length == 0" ng-click="processToCheckOut()">Process To Check out</button>
-            </div>
-        </div>
-</div>
+        <div class="col">
 
+        </div>
+        <div class="col-md-auto">
+
+        </div>
+        <div class="col col-lg-4">
+            <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-hide="shoppingCart.length == 0"
+                ng-click="processToCheckOut()">Process To Check out</button>
+        </div>
+    </div>
+</div>

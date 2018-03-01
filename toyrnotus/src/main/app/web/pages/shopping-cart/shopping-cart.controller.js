@@ -1,6 +1,7 @@
 app.controller('shopping-cart-controller', function ($scope, $routeParams, toyService, $location) {
 
     $scope.shoppingCart = toyService.orders.orderLineItems;
+    $scope.shippingCost = toyService.orders.shippingCost
     $scope.totalPrice = 0.0;
 
     $scope.calculateTotalPrice = function () {
