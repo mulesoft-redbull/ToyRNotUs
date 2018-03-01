@@ -56,7 +56,7 @@ Case 06 Submit order
     Open Browser    about:blank      gc
     Check product detail    2
     Add Product to cart    1
-    click Button    id:checkout
+    click Button    id:check-out
     sleep    1s
     Input Text    id=fullName    Tanet Gamchaitavonrattana
     Input Text    id=address1    54 North Sathorn
