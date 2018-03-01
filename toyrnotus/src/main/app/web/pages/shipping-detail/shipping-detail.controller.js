@@ -11,12 +11,13 @@ app.controller('shipping-detail-controller', function ($scope, $location, toySer
         toyService.createOrder().then(
             function (result) {
                 console.log(result);
-                alert('deliver successful');
                 toyService.initialOrder(); 
+                $location.path("/order-summary/"+result.data.orderId);
             }, function (err) {
                 //alert(err);
                 console.log(err);
                 alert(err);
+                $location.path("/");
             }
         );
     }

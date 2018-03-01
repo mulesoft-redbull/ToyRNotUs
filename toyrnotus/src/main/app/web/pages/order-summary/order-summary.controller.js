@@ -1,3 +1,3 @@
-app.controller('order-summary-controller', ['$scope', function ($scope) {
-    $scope.controllerName = 'order-summary-controller';
-}]);
+app.controller('order-summary-controller', function ($scope, $routeParams, toyService, $location) {
+    $scope.orderId = $routeParams.orderId;
+});
