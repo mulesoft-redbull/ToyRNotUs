@@ -31,7 +31,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     </flow>
     <flow name="post:/orders:application/json:toyrnotus-config">
         <set-property propertyName="Content-Type" value="application/json" doc:name="Property"/>
-        <flow-ref name="postorderFlow1" doc:name="postorderFlow"/>
+        <flow-ref name="postorderFlow" doc:name="postorderFlow"/>
     </flow>
     <apikit:mapping-exception-strategy name="toyrnotus-apiKitGlobalExceptionMapping">
         <apikit:mapping statusCode="404">
