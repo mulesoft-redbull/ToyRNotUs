@@ -6,14 +6,10 @@ app.controller('shopping-cart-controller', function ($scope, $routeParams, toySe
     $scope.shoppingCart = toyService.orders.orderLineItems;
 
     $scope.removeItemFromCart = function(toyId){
-        console.log($scope.shoppingCart);
         $scope.shoppingCart = $scope.shoppingCart.filter(function(orderItem) {
-            console.log('removing');
-            console.log(orderItem.toyId);
-            console.log(toyId);
-            return orderItem.toyId == toyId;
+            return orderItem.toyId != toyId;
         });
-        console.log($scope.shoppingCart);
+        
     }
 
     $scope.range = function (n) {

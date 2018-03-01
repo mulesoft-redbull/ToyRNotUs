@@ -34,13 +34,16 @@
 
                     <li>
                         <b>Quantity</b> :
-                        <select class="custom-select" id="quantitySelect" name="quantitySelect" ng-model="quantitySelect">
-                            <option ng-repeat="i in range(toy.quantity) track by $index">{{$index+1}}</option>
+                        <select class="custom-select" id="quantitySelect" name="quantitySelect" ng-init="quantitySelect = 1" ng-model="quantitySelect">
+                            <option ng-repeat="i in range(toy.quantity) track by $index" ng-selected="quantitySelect == 1 ">{{$index+1}}</option>
                         </select>
                     </li>
                     <!-- <li><b>Quantity</b> :  {{toy.quantity}}</li> -->
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary" id="addToCart" name="addToCart" ng-click="addToysToCart()">Add to cart</button>
+                <button type="button" class="btn btn-lg btn-block btn-outline-primary" id="addToCart" name="addToCart" ng-click="addToysToCart()"
+                ng-show="toy.quantity != 0 ">Add to cart</button>
+                <button type="button" class="btn btn-lg btn-block btn-outline-disabled" id="addToCart" name="addToCart" ng-click="addToysToCart()"
+                ng-show="toy.quantity == 0" ng-disabled="true">Add to cart</button>
             </div>
         </div>
     </div>
