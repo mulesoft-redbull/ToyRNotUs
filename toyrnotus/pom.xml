@@ -223,6 +223,12 @@
 		    <version>5.1.6</version>
 		</dependency>
 
+    <dependency>
+            <groupId>com.mulesoft.weave</groupId>
+            <artifactId>mule-plugin-weave</artifactId>
+            <version>${mule.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 	<repositories>
