@@ -19,6 +19,10 @@ function config($routeProvider) {
         templateUrl: 'pages/shipping-detail/shipping-detail.html',
         controller: 'shipping-detail-controller'
     })
+    .when('/shipping-address', {
+        templateUrl: 'pages/shipping-address/shipping-address.html',
+        controller: 'shipping-address-controller'
+    })
     .when('/order-summary', {
         templateUrl: 'pages/order-summary/order-summary.html',
         controller: 'order-summary-controller'
