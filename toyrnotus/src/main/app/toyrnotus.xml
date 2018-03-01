@@ -9,6 +9,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     <flow name="toyrnotus-main">
         <http:listener config-ref="toyrnotus-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
         <set-property propertyName="Access-Control-Allow-Origin" value="*" doc:name="Property"></set-property>
+        <set-property propertyName="Access-Control-Allow-Methods" value="GET,POST,PUT" doc:name="Property"></set-property>
         <apikit:router config-ref="toyrnotus-config" doc:name="APIkit Router"/>
         <exception-strategy ref="toyrnotus-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
@@ -17,7 +18,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
         <apikit:console config-ref="toyrnotus-config" doc:name="APIkit Console"/>
     </flow>
     <flow name="patch:/toys/{toyId}:toyrnotus-config">
-        <set-payload value="{&#xA;&quot;message&quot; : &quot;Toy updated.&quot;&#xA;}" doc:name="Set Payload"/>
+        <flow-ref name="patchToyQtyByIdSub_Flow" doc:name="patchToyQtyByIdSub_Flow"/>
     </flow>
     <flow name="get:/toys:toyrnotus-config">
         <flow-ref name="getToysListSub_Flow" doc:name="getToysListSub_Flow"/>

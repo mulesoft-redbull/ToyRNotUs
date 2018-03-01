@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    <sub-flow name="patchToyQtyByIdSub_Flow">
+        <set-variable variableName="toy_id" value="#[flowVars.toyID]" doc:name="Set ToyID"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <set-variable variableName="quantity" value="#[payload.quantity]" doc:name="Set Quantity"/>
+        <db:update config-ref="MySQL_Configuration" doc:name="Database">
+            <db:parameterized-query><![CDATA[UPDATE Products SET Availability = #[flowVars.quantity] WHERE ToyID = #[flowVars.toy_id]]]></db:parameterized-query>
+        </db:update>
+        <choice doc:name="Choice">
+            <when expression="#[payload == 1]">
+                <set-payload value="{
+&quot;message&quot; : &quot;Toy updated.&quot;
+}" doc:name="Set Payload Successful"/>
+            </when>
+            <otherwise>
+                <set-property propertyName="http.status" value="#[400]" doc:name="400"/>
+                <set-payload value="#[null]" doc:name="Set Payload Unsuccessful"/>
+            </otherwise>
+        </choice>
+    </sub-flow>
+</mule>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
+    <munit:config name="munit" doc:name="MUnit configuration"/>
+    <spring:beans>
+        <spring:import resource="classpath:updatetoyqtybyid.xml"/>
+        <spring:import resource="classpath:global.xml"/>
+    </spring:beans>
+    <munit:test name="updatetoyqtybyid-test-suite-updateToyQtyByIdSub_FlowTest-Valid" description="Test">
+        <munit:set payload="#[{&quot;quantity&quot;: 99}]" doc:name="Set Message">
+            <munit:invocation-properties>
+                <munit:invocation-property key="toyID" value="999"/>
+            </munit:invocation-properties>
+        </munit:set>
+        <flow-ref name="patchToyQtyByIdSub_Flow" doc:name="Flow-ref to updateToyQtyByIdSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[payload.message == &quot;Toy updated.&quot;]" doc:name="Is message equal to &quot;Toy updated&quot;"/>
+    </munit:test>
+    <munit:test name="updatetoyqtybyid-test-suite-updateToyQtyByIdSub_FlowTest-Invalid" description="Test">
+        <munit:set payload="#[{&quot;quantity&quot;: 99}]" doc:name="Set Message">
+            <munit:invocation-properties>
+                <munit:invocation-property key="toyID" value="0"/>
+            </munit:invocation-properties>
+        </munit:set>
+        <flow-ref name="patchToyQtyByIdSub_Flow" doc:name="Flow-ref to updateToyQtyByIdSub_Flow"/>
+        <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
+        <munit:assert-true condition="#[message.outboundProperties.'http.status' == 400]" doc:name="Is http status equal to 400"/>
+        <munit:assert-true condition="#[payload == null]" doc:name="Is payload equal to null"/>
+    </munit:test>
+</mule>
