@@ -52,7 +52,7 @@ Case 05 Check total cost
     Close Browser
 
 Case 06 Submit order
-    [Tags]  done
+    [Tags]  dev
     Open Browser    about:blank      gc
     Check product detail    2
     Add Product to cart    1
@@ -66,8 +66,8 @@ Case 06 Submit order
     Input Text    id=tel    +66851209334
     click Button    id:deliverToThisAddress
     sleep    1s
-    Page Should Contain    Thank you
-    Page Should Contain    Tanet
+    ${orderId}=    Get Text    id:orderId 
+    Should Not Be Empty    ${orderId}
     Close Browser
 
 *** Keywords ***

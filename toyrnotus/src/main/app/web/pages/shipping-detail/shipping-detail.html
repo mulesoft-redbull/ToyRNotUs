@@ -37,7 +37,7 @@
             <input type="tel" class="form-control" id="tel" required="" ng-model="shoppingCart.telephone">
         </div>
     </div>
-    <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-click="submitOrderClicked()"
+    <button type="button" class="btn btn-success btn-search" id="deliverToThisAddress" name="deliverToThisAddress" ng-click="submitOrderClicked()"
         ng-show="shoppingCart.telephone && shoppingCart.city && shoppingCart.province  && shoppingCart.postcode  && shoppingCart.address1 && shoppingCart.fullName && shoppingCartOrder.length != 0">Deliver to this address</button>
 
     <div class="text-warning" ng-show="shoppingCartOrder == 0">Shopping cart is empty</div>
