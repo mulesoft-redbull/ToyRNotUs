@@ -24,7 +24,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 ---
 {
 	message: "Order created",
-	OrderId: payload[0].OrderId[0]
+	orderId: payload[0].orderId[0]
 }
 	]]></dw:set-payload>
         </dw:transform-message>
