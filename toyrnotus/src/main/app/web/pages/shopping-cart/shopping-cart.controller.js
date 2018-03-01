@@ -1,16 +1,23 @@
 app.controller('shopping-cart-controller', function ($scope, $routeParams, toyService, $location) {
 
-    console.log(toyService.orders);
-    console.log(toyService.orders.orderLineItems);
-
     $scope.shoppingCart = toyService.orders.orderLineItems;
+    $scope.totalPrice = 0.0;
 
-    $scope.removeItemFromCart = function(toyId){
-        $scope.shoppingCart = $scope.shoppingCart.filter(function(orderItem) {
+    $scope.calculateTotalPrice = function () {
+        $scope.totalPrice = 0;
+        $scope.shoppingCart.forEach(lineItem => {
+            $scope.totalPrice += (lineItem.unitPrice * parseInt(lineItem.quantity));
+        });
+    }
+
+    $scope.calculateTotalPrice();
+
+    $scope.removeItemFromCart = function (toyId) {
+        $scope.shoppingCart = $scope.shoppingCart.filter(function (orderItem) {
             return orderItem.toyId != toyId;
         });
-        
     }
+
 
     $scope.range = function (n) {
         return new Array(n);

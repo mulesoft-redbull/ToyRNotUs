@@ -15,31 +15,38 @@
     <tbody>
         <tr ng-repeat="lineItem in shoppingCart" ng-click="">
             <td>
-                <ul class="list-unstyled mt-3 mb-4">
-                    <li>
-                        <b>Name</b> : {{lineItem.toyName}}</li>
-                    <li>
-                        <li>
-                            <b>Brand</b> : {{lineItem.brand}}</li>
-                        <li>
-                            <b>Age</b> : {{lineItem.age}}</li>
-                        <li>
-                            <b>Gender</b> : {{lineItem.gender}}</li>
-                        <li class="text-success">
-                            <b>In stock</b>
-                        </li>
-                        <li>
-                            <button type="button" class="btn btn-danger btn-search" id="deleteItemButton{{lineItem.toyId}}" name="deleteItemButton{{lineItem.toyId}}"
-                                ng-click="removeItemFromCart(lineItem.toyId)" ng-click="">Delete</button>
-                        </li>
 
-                        <!-- <li><b>Quantity</b> :  {{toy.quantity}}</li> -->
+
+                <ul class="list-unstyled">
+                    <li class="media">
+                        <img src="/web/images/toys/{{lineItem.toyId}}.jpg" class="mr-3" alt="Responsive image">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">{{lineItem.toyName}}</h5>
+                            <ul class="list-unstyled mt-3 mb-4">
+
+                                <li>
+                                    <b>Brand</b> : {{lineItem.brand}}</li>
+                                <li>
+                                    <b>Age</b> : {{lineItem.age}}</li>
+                                <li>
+                                    <b>Gender</b> : {{lineItem.gender}}</li>
+                                <li class="text-success">
+                                    <b>In stock</b>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-danger btn-search" id="deleteItemButton{{lineItem.toyId}}" name="deleteItemButton{{lineItem.toyId}}"
+                                        ng-click="removeItemFromCart(lineItem.toyId)" ng-click="">Delete</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
+
             </td>
             <td>
 
                 <b>Quantity</b> :
-                <select class="custom-select" id="toyQuantity{{toyId}}" name="toyQuantity{{toyId}}" ng-model="lineItem.quantity">
+                <select class="custom-select" id="toyQuantity{{toyId}}" name="toyQuantity{{toyId}}" ng-model="lineItem.quantity" ng-change="calculateTotalPrice()">
                     <option ng-repeat="i in range(100) track by $index" ng-selected="i == lineItem.quantity">{{$index+1}}</option>
                 </select>
 
@@ -49,4 +56,52 @@
     </tbody>
 </table>
 
-<button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-click="">Check out</button>
+
+<div class="container" ng-hide="shoppingCart.length == 0">
+
+    <div class="row">
+        <div class="col">
+            Method : Cash on Delivery
+        </div>
+        <div class="col-md-auto">
+
+        </div>
+        <div class="col col-lg-4">
+            <b>Subtotal ( {{shoppingCart.length}} items): {{totalPrice | number:2}} THB</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Shipping fee: 50.00 THB
+        </div>
+        <div class="col-md-auto">
+
+        </div>
+        <div class="col col-lg-4">
+            <b> Shipping fee: 50.00 THB</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            
+        </div>
+        <div class="col-md-auto">
+
+        </div>
+        <div class="col col-lg-4">
+            <b> Total {{totalPrice+50 | number:2}}</b>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col">
+               
+            </div>
+            <div class="col-md-auto">
+    
+            </div>
+            <div class="col col-lg-4">
+                <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-hide="shoppingCart.length == 0" ng-click="">Check out</button>
+            </div>
+        </div>
+</div>
+
