@@ -18,14 +18,26 @@ app.controller('toys-detail-controller', function ($scope, $routeParams, toyServ
     $scope.addToysToCart = function () {
         let toyOrder = {
             "toyId": $scope.toy.toyId,
+            "toyName": $scope.toy.toyName,
             "quantity": $scope.quantitySelect,
             "unitPrice": $scope.toy.price,
             "brand":$scope.toy.brand,
             "age":$scope.toy.age,
             "gender":$scope.toy.gender
         };
-        //TODO consolidate same toy id in order
-        toyService.orders.orderLineItems.push(toyOrder);
+        
+        let duplicatedOrder = false;
+
+        toyService.orders.orderLineItems.forEach((lineItem,index) => {
+            if(lineItem.toyId == toyOrder.toyId){
+                toyService.orders.orderLineItems[index] = toyOrder; 
+                duplicatedOrder = true;
+            }
+        });
+
+        if(!duplicatedOrder)
+            toyService.orders.orderLineItems.push(toyOrder);
+
         $location.path('/shopping-cart');
     }
 

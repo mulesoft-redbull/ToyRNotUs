@@ -17,32 +17,34 @@
             <td>
                 <ul class="list-unstyled mt-3 mb-4">
                     <li>
-                        <b>Brand</b> : {{lineItem.brand}}</li>
+                        <b>Name</b> : {{lineItem.toyName}}</li>
                     <li>
-                        <b>Age</b> : {{lineItem.age}}</li>
-                    <li>
-                        <b>Gender</b> : {{lineItem.gender}}</li>
-                    <li class="text-success">
-                        <b>In stock</b>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-danger btn-search" id="deleteItemButton{{lineItem.toyId}}" name="deleteItemButton{{lineItem.toyId}}"
-                        ng-click="removeItemFromCart(lineItem.toyId)"
-                            ng-click="">Delete</button>
-                    </li>
+                        <li>
+                            <b>Brand</b> : {{lineItem.brand}}</li>
+                        <li>
+                            <b>Age</b> : {{lineItem.age}}</li>
+                        <li>
+                            <b>Gender</b> : {{lineItem.gender}}</li>
+                        <li class="text-success">
+                            <b>In stock</b>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-danger btn-search" id="deleteItemButton{{lineItem.toyId}}" name="deleteItemButton{{lineItem.toyId}}"
+                                ng-click="removeItemFromCart(lineItem.toyId)" ng-click="">Delete</button>
+                        </li>
 
-                    <!-- <li><b>Quantity</b> :  {{toy.quantity}}</li> -->
+                        <!-- <li><b>Quantity</b> :  {{toy.quantity}}</li> -->
                 </ul>
             </td>
             <td>
 
-                <b>Quantity</b> : 
-                <select class="custom-select" id="toy-quantity-{{toyId}}" name="toy-quantity-{{toyId}}" ng-model="lineItem.quantity">
+                <b>Quantity</b> :
+                <select class="custom-select" id="toyQuantity{{toyId}}" name="toyQuantity{{toyId}}" ng-model="lineItem.quantity">
                     <option ng-repeat="i in range(100) track by $index" ng-selected="i == lineItem.quantity">{{$index+1}}</option>
                 </select>
 
             </td>
-            <td> {{lineItem.unitPrice * lineItem.quantity}}</td>
+            <td> {{lineItem.unitPrice * lineItem.quantity | number:2}}</td>
         </tr>
     </tbody>
 </table>
