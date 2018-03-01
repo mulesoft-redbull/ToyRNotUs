@@ -3,13 +3,42 @@
         Shipping Address
     </div>
 </div>
-<div style="width: 800px; padding-left: 50px">Full name<br />
-    <input id="fullName" type="text" class=".input-lg"><br />
-    Address1<br />
-    <input id="address1" type="text" class=".input-lg"><br />
-    Address2<br />
-    <input id="address2" type="text" class=".input-lg"><br />
-    City<br />
-    <input id="city" type="text" class=".input-lg"><br />
-    <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-click="">Check out</button>
+<div style="width: 800px; padding-left:50px">
+    <div class="mb-3">
+        <label for="fullName">Full name * </label>
+        <input type="text" class="form-control" id="fullName" required="" ng-model="shoppingCart.fullName">
+    </div>
+    <div class="mb-3">
+        <label for="address1">Address1 *</label>
+        <input type="text" class="form-control" id="address1" required="" ng-model="shoppingCart.address1">
+    </div>
+    <div class="mb-3">
+        <label for="address2">Address2</label>
+        <input type="text" class="form-control" id="address2" required="" ng-model="shoppingCart.address2">
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 mb-3">
+            <label for="city">City * </label>
+            <input type="text" class="form-control" id="city" required="" ng-model="shoppingCart.city">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="province">Province * </label>
+            <input type="text" class="form-control" id="province" required="" ng-model="shoppingCart.province">
+        </div>
+        <div class="col-md-3 mb-3">
+            <label for="postCode">Post code * </label>
+            <input type="number" class="form-control" id="postCode" required="" ng-model="shoppingCart.postcode">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mb-3">
+            <label for="phoneNumber">Phone Number * </label>
+            <input type="tel" class="form-control" id="phoneNumber" required="" ng-model="shoppingCart.telephone">
+        </div>
+    </div>
+    <button type="button" class="btn btn-success btn-search" id="check-out" name="check-out" ng-click="submitOrderClicked()"
+        ng-show="shoppingCart.telephone && shoppingCart.city && shoppingCart.province  && shoppingCart.postcode  && shoppingCart.address1 && shoppingCart.fullName && shoppingCartOrder.length != 0">Deliver to this address</button>
+
+    <div class="text-warning" ng-show="shoppingCartOrder == 0">Shopping cart is empty</div>
 </div>
