@@ -84,7 +84,12 @@ app.service('toyService', function ($http) {
         let finalOrder = this.transformPostOrder(this.orders);
         console.log(this.orders);
         var createOrderUrl = baseUrl + "/orders/";
-        return $http.post(createOrderUrl, finalOrder);
+        var config = {
+                headers : {
+                    'Content-Type': 'application/json'
+                }
+            }
+        return $http.post(createOrderUrl, finalOrder, config);
     }
 
 });
