@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
     <flow name="toyrnotus-main">
         <http:listener config-ref="toyrnotus-httpListenerConfig" path="/api/*" doc:name="HTTP"/>
         <set-property propertyName="Access-Control-Allow-Origin" value="*" doc:name="Property"></set-property>
-        <set-property propertyName="Access-Control-Allow-Methods" value="GET, POST, DELETE, PUT" doc:name="Property"/>
+        <set-property propertyName="Access-Control-Allow-Methods" value="GET,POST,PUT" doc:name="Property"></set-property>
         <apikit:router config-ref="toyrnotus-config" doc:name="APIkit Router"/>
         <exception-strategy ref="toyrnotus-apiKitGlobalExceptionMapping" doc:name="Reference Exception Strategy"/>
     </flow>
@@ -24,7 +24,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
         <flow-ref name="getToysListSub_Flow" doc:name="getToysListSub_Flow"/>
     </flow>
     <flow name="get:/orders/{orderId}:toyrnotus-config">
-        <set-payload value="{&#xA;  &quot;orderId&quot;:1,&#xA;  &quot;orderLineItems&quot;: [ {&#xA;  &quot;toyId&quot;: 2,&#xA;  &quot;quantity&quot;:2,&#xA;  &quot;unitPrice&quot;: 12.95&#xA;  }&#xA;  ],&#xA;  &quot;shippingAddress&quot;:{&#xA;  &quot;fullName&quot;: &quot;Tanet Gamchaitavonrattana&quot;,&#xA;  &quot;address1&quot;: &quot;54 North Sathorn&quot;,&#xA;  &quot;city&quot;: &quot;Bangkok&quot;,&#xA;  &quot;province&quot;: &quot;Bangkok&quot;,&#xA;  &quot;postcode&quot;: &quot;10500&quot;,&#xA;  &quot;telephone&quot;: &quot;+6623527866&quot;&#xA;  },&#xA;  &quot;shippingCost&quot;: 50&#xA;  }" doc:name="Set Payload"/>
+        <flow-ref name="getOrderByIdSub_Flow" doc:name="getOrderByIdSub_Flow"/>
     </flow>
     <flow name="get:/toys/{toyId}:toyrnotus-config">
         <flow-ref name="getToyByIdSub_Flow" doc:name="getToyByIdSub_Flow"/>

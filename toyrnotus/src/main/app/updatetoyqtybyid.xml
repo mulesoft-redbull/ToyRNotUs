@@ -26,5 +26,6 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
                 <set-payload value="#[null]" doc:name="Set Payload Unsuccessful"/>
             </otherwise>
         </choice>
+        <logger message="#[message]" level="INFO" doc:name="Logger"/>
     </sub-flow>
 </mule>
