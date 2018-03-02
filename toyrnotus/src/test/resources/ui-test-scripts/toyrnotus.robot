@@ -9,7 +9,7 @@ ${URL}    http://188.166.213.123:8081/web/
 Case 01 Search Product with Age 3_to_5 and gender Female
     [Tags]  done
     Open Browser    ${URL}     gc
-    sleep    1s
+    sleep    2s
     Search Product    3_to_5    Female
     Page Should Contain    43 Piece dinner Set
     Close Browser
@@ -65,7 +65,7 @@ Case 06 Submit order
     Input Text    id=postcode    10500
     Input Text    id=tel    +66851209334
     click Button    id:deliverToThisAddress
-    sleep    1s
+    sleep    3s
     ${orderId}=    Get Text    id:orderId 
     Should Not Be Empty    ${orderId}
     Close Browser
