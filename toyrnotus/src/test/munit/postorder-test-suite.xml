@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
         <spring:import resource="classpath:postorder.xml"/>
         <spring:import resource="classpath:global.xml"/>
     </spring:beans>
-    <munit:test name="postorder-test-suite-postorderFlowTest" description="Test" >
+    <munit:test name="postorder-test-suite-postorderFlowTest" description="Test" ignore="true">
         <mock:when messageProcessor="db:stored-procedure" doc:name="Mock">
             <mock:then-return payload="#[['resultSet1': [['orderId': 58]], 'updateCount1': 0]]" mimeType="application/java"/>
         </mock:when>
