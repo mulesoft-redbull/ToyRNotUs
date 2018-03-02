@@ -55,6 +55,7 @@ node {
         
     } catch (err) {
         currentBuild.result = 'FAILED'
+        junit "toyrnotus/target/surefire-reports/*.xml"
         throw err
     }
 }
