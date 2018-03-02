@@ -13,7 +13,11 @@ node {
         stage ('Deploy Dev') {
             sh "echo 'Deploying to DEV'"
             //sh "cd toyrnotus"
-            sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Development' -DskipTests=true -s toyrnotus/mvn-settings.xml"
+            try{
+                sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Development' -DskipTests=true -s toyrnotus/mvn-settings.xml"
+            }catch(err){
+                sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Development' -DskipTests=true -s toyrnotus/mvn-settings.xml"
+            }
         }
         stage ('API-test-dev') {
             sh "echo 'testing api on dev'"
@@ -41,8 +45,12 @@ node {
         }
         stage ('Deploy Prod') {
             sh "echo 'Deploying to PROD'"
-            //sh "cd toyrnotus"
-            sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Production' -DskipTests=true -s toyrnotus/mvn-settings.xml"
+            
+            try{
+                sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Production' -DskipTests=true -s toyrnotus/mvn-settings.xml"
+            }catch(err){
+                sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Production' -DskipTests=true -s toyrnotus/mvn-settings.xml"
+            }
         }
         
     } catch (err) {
