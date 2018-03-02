@@ -14,18 +14,6 @@ node {
             sh "echo 'Deploying to DEV'"
             //sh "cd toyrnotus"
             sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Development' -DskipTests=true -s toyrnotus/mvn-settings.xml"
-           
-            /*
-            parallel 'static': {
-                sh "echo 'shell scripts to run static tests...'"
-            },
-            'unit': {
-                sh "echo 'shell scripts to run unit tests...'"
-            },
-            'integration': {
-                sh "echo 'shell scripts to run integration tests...'"
-            }
-            */
         }
         stage ('API-test-dev') {
             sh "echo 'testing api on dev'"
@@ -37,10 +25,8 @@ node {
                 currentBuild.result = 'UNSTABLE'
                 junit "newman/*.xml"
                 return
-            }
-            
+            }   
         }
-     
         stage ('UI-test-dev') {
             sh "echo 'testing ui on dev'"
             
@@ -53,7 +39,11 @@ node {
             }
             
         }
-     
+        stage ('Deploy Prod') {
+            sh "echo 'Deploying to PROD'"
+            //sh "cd toyrnotus"
+            sh "mvn -f toyrnotus/pom.xml deploy -Dmule.env='Production' -DskipTests=true -s toyrnotus/mvn-settings.xml"
+        }
         
     } catch (err) {
         currentBuild.result = 'FAILED'
