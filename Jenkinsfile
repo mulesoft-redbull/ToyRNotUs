@@ -9,6 +9,7 @@ node {
         stage ('Build') {
             sh "echo 'Building project'"
             sh "mvn -f toyrnotus/pom.xml clean package -s toyrnotus/mvn-settings.xml"
+            junit "toyrnotus/target/surefire-reports/*.xml"
         }
         stage ('Deploy Dev') {
             sh "echo 'Deploying to DEV'"
