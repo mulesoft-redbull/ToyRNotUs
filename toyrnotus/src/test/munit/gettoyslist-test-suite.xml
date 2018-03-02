@@ -324,7 +324,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
         </munit:set>
         <flow-ref name="getToysListSub_Flow" doc:name="Flow-ref to getToysListSub_Flow"/>
         <json:json-to-object-transformer returnClass="java.lang.Object" doc:name="JSON to Object"/>
-        <munit:assert-true condition="#[message.outboundProperties.'http.status' == 404]" doc:name="Is http status equal to 404"/>
-        <munit:assert-true condition="#[message.payload == null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload != null]" doc:name="Is payload not equal null"/>
+        <munit:assert-true condition="#[message.payload.size() == 0]" doc:name="Is payload size equal to zero"/>
     </munit:test>
 </mule>

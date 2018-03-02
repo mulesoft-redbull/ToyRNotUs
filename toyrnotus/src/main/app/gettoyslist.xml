@@ -49,8 +49,7 @@ payload map ((product , idx) -> {
                 </dw:transform-message>
             </when>
             <otherwise>
-                <set-property propertyName="http.status" value="#[404]" doc:name="404"/>
-                <set-payload value="#[null]" doc:name="Set Null Payload"/>
+                <set-payload value="#[[]]" doc:name="Set Payload size zero"/>
             </otherwise>
         </choice>
         <logger message="#[message]" level="INFO" doc:name="Logger"/>
