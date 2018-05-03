@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.config.js",
-  "dependencies": {},
+  "dependencies": {
+    "hoek": "^5.0.3"
+  },
   "devDependencies": {
     "lite-server": "^2.3.0"
   },
